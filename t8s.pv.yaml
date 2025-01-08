@@ -11,7 +11,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/Users/packages"
+    path: "${HOST_PATH}"
 
 ---
 
@@ -26,14 +26,3 @@ spec:
   resources:
     requests:
       storage: 400Mi
-
----
-
-apiVersion: v1
-kind: Secret
-metadata:
-  name: pypisecret
-type: Opaque
-stringData:
-  username: pypi # make sure to change username
-  password: pass # make sure to change password

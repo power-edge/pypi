@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: "pypiserver"
-        image: localhost:5000/pypi-server # Replace it with the remote container registry
+        image: ${PYPI_IMAGE}
         env:
         - name: PYPI_USER
           valueFrom:

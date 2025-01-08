@@ -10,7 +10,6 @@ Make sure you have installed all of the following prerequisites on your developm
 4. Docker Registry
 
 
-
 ## Local docker registry
 
 docker run -d -p 5000:5000 --name registry registry:2
@@ -26,29 +25,35 @@ This will clone the latest version of the pypi repository to pypi folder.
 cd pypi
 ````
 
+## Load Common ENV
+```
+. .common
+```
+
+This will set some environment variables per your git org and repo. It is re-used for other scripts.
+
+
+
 ## Docker build 
 
-````
-# localhost:5000 -> replace it with you container registry and port
-docker build -t localhost:5000/pypi-server . 
-````
+```bash
+./build.sh
+```
 
 
 ## Docker push 
 
-````
-# localhost:5000 -> replace it with you container registry and port
-docker push localhost:5000/pypi-server  
-````
-
+```bash
+# . .common
+docker push $GIT_ORG/$GIT_REPO:$TAG_VERSION
+```
 
 ## Apply kubernetes files in k8s folder  
 
-````
-# Make sure to change secret values before apply
-kubectl apply -f k8s/              
 
-````
+```
+kubectl apply -f k8s/
+```
 
 
 ## Port Forward and see the PyPi UI 
