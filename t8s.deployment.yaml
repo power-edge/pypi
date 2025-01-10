@@ -40,7 +40,7 @@ spec:
         persistentVolumeClaim:
           claimName: pypi-pvc
       imagePullSecrets:
-       - name: dockercreds # Add Imagepull secret in a kubernetes secret and add the secret name here
+       - name: dockercreds # Add ImagePullSecret in a kubernetes secret and add the secret name here
   strategy:
     rollingUpdate:
       maxSurge: 25%
